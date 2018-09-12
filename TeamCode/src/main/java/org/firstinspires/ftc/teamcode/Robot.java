@@ -41,7 +41,7 @@ public class Robot {
 
     public void init(HardwareMap ahwdMap) {
         // Save ref to HardwareMap
-        HardwareMap hwMap = ahwdMap;
+        hwdMap = ahwdMap;
 
         // Init components
         leftDrive = hwdMap.get(DcMotor.class, "leftDrive");
