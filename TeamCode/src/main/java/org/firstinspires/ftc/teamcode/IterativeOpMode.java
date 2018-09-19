@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="LinearOpMode", group="TeleOp")
+@TeleOp(name="IterativeOpMode", group="TeleOp")
 // @Disabled
-public class LinearOpMode extends OpMode {
+public class IterativeOpMode extends OpMode {
 
     // Declare Members
     Robot robot = new Robot(); // Use the Robot hardware class
