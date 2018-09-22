@@ -15,18 +15,18 @@ import com.qualcomm.robotcore.util.ElapsedTime
 //@Disabled
 class KtAutoOp : LinearOpMode()
 {
+    //adds robot objects for variables and methods
     val robot = Robot()
-
-    //val time = ElapsedTime()
     @Throws(InterruptedException::class)
     override fun runOpMode()
     {
         telemetry.addData("Status", "Initialized")
         telemetry.update()
+        //initializes all parts
         robot.init(hardwareMap)
 
         waitForStart()
-        //runtime.reset()//IDK WHY RUNTIME DOESN"T WORK!
+        //runtime.reset()//IDK WHY RUNTIME DOESN'T WORK!
 
         robot.driveForward(5.9)
         robot.clampServo(.2)

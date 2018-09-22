@@ -23,6 +23,7 @@ class KtTeleOp : OpMode()
     {
         telemetry.addData("Status", "Initialized")
         telemetry.update()
+        //initializes all parts
         robot.init(hardwareMap)
     }
 
@@ -32,7 +33,14 @@ class KtTeleOp : OpMode()
         var leftPower: Float = -gamepad1.left_stick_y
         var rightPower: Float = -gamepad1.right_stick_y
 
+        robot.leftDrive.power = leftPower.toDouble()
+        robot.rightDrive.power = rightPower.toDouble()
+
+        robot.arm.power = -gamepad2.left_stick_y.toDouble()
+
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)
+        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)
+        telemetry.addData("Arm Motor", " (%.2f)", -gamepad2.left_stick_y)
     }
 
     override fun stop()
