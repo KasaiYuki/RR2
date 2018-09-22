@@ -61,9 +61,22 @@ public class Robot {
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftClaw.setDirection(Servo.Direction.REVERSE);
 
         // Set servo positions
         leftClaw.setPosition(CLAW_HOME);
         rightClaw.setPosition(CLAW_HOME);
+    }
+
+    public void clampServo(double pos)
+    {
+        leftClaw.setPosition(pos);
+        rightClaw.setPosition(pos);
+    }
+
+    public void driveForward(double pow)
+    {
+        rightDrive.setPower(pow);
+        leftDrive.setPower(pow);
     }
 }

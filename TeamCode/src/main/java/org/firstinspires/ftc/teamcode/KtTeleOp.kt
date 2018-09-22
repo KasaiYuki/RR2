@@ -21,9 +21,9 @@ class KtTeleOp : OpMode()
 
     override fun init()
     {
-        robot.init(hardwareMap)
-
         telemetry.addData("Status", "Initialized")
+        telemetry.update()
+        robot.init(hardwareMap)
     }
 
     override fun loop()
