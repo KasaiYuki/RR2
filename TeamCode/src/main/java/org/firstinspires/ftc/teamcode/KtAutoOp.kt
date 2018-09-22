@@ -21,7 +21,6 @@ class KtAutoOp : LinearOpMode()
     @Throws(InterruptedException::class)
     override fun runOpMode()
     {
-
         telemetry.addData("Status", "Initialized")
         telemetry.update()
         robot.init(hardwareMap)
