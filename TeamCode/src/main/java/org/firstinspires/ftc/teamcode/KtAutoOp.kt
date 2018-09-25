@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.hardware.Servo
 import com.qualcomm.robotcore.util.ElapsedTime
-import com.sun.beans.editors.DoubleEditor
 
 /**
  * Created by KasaiYuki on 9/21/2018.
