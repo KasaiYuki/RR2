@@ -47,19 +47,23 @@ class KtAutoOp : LinearOpMode()
         //runtime.reset()//IDK WHY RUNTIME DOESN'T WORK!
 
         unClamp()
-        robot.driveForward(-5.9)
-
+        sleep(100)
+        drive(-1.0,1.0)
+        robot.driveForward(5.9)
+        sleep(1000)
     }
 
     fun unClamp()
     {
-        extArm?.power = -1.0
+        extArm?.power = -0.5
         armServo?.position = 0.0
     }
 
     fun drive(leftM: Double, rightM: Double)
     {
-        robot.rightDrive.power = rightM
         robot.leftDrive.power = leftM
+        robot.rightDrive.power = rightM
     }
+
+
 }

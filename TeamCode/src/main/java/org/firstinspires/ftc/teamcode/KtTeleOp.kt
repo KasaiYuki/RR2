@@ -19,6 +19,7 @@ class KtTeleOp : OpMode()
     //using robot class for motors, servos etc
     val robot = Robot()
 
+
     var extArm: DcMotor? = null
     var armServo: Servo? = null
 
@@ -64,6 +65,7 @@ class KtTeleOp : OpMode()
 
     }
 
+    //Will close the armt o different positions based on what is being grabbed
     private fun spinServo() {
         if (gamepad2.left_bumper) {
             armServo?.position = 0.25 //Sphere
