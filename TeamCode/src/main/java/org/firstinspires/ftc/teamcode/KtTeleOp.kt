@@ -43,8 +43,8 @@ class KtTeleOp : OpMode()
     override fun loop()
     {
         //Tank Drive
-        var leftPower: Float = -gamepad1.left_stick_y
-        var rightPower: Float = -gamepad1.right_stick_y
+        var leftPower: Float = gamepad1.left_stick_y
+        var rightPower: Float = gamepad1.right_stick_y
         var armPower: Float = -gamepad2.left_stick_y
         var extPower: Float = -gamepad2.right_stick_y
 

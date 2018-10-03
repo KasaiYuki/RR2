@@ -51,7 +51,7 @@ public class Robot {
         rightClaw = hwdMap.get(Servo.class, "rightClaw");
 
         // Reverse the direction of the left drive motor
-        leftDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // Zero out motor power
         leftDrive.setPower(0);
