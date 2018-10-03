@@ -68,4 +68,13 @@ class KtRobot
     {
         drive(pow, pow)
     }
+
+    fun spinServo(gp: Gamepad) {
+        if (gp.left_bumper) {
+            armServo?.position = 0.25 //Sphere
+        } else if (gp.right_bumper) {
+            armServo?.position = 0.45 //Cube
+        } else {
+            armServo?.position = 0.0 }
+    }
 }
