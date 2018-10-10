@@ -19,25 +19,13 @@ class KtTeleOp : OpMode()
     //using robot class for motors, servos etc
     val robot = KtRobot()
 
-
-/*    var extArm: DcMotor? = null
-    var armServo: Servo? = null
-
-    var motF = DcMotorSimple.Direction.FORWARD
-    var motR = DcMotorSimple.Direction.REVERSE
-    var serR = Servo.Direction.REVERSE
-    var serF = Servo.Direction.FORWARD*/
     override fun init()
     {
         telemetry.addData("Status", "Initialized")
         telemetry.update()
         //initializes all parts
         robot.init(hardwareMap)
-/*        extArm = hardwareMap.dcMotor.get("extArm")
-        armServo = hardwareMap.servo.get("armServo")
 
-        extArm?.direction = motF
-        armServo?.direction = serF*/
     }
 
     override fun loop()
@@ -73,7 +61,7 @@ class KtTeleOp : OpMode()
 
     }
 
-/*    //Will close the armt o different positions based on what is being grabbed
+/*  //Will close the arm to different positions based on what is being grabbed
     private fun spinServo() {
         if (gamepad2.left_bumper) {
             armServo?.position = 0.25 //Sphere

@@ -21,14 +21,6 @@ class KtAutoOp : LinearOpMode()
     //adds robot objects for variables and methods
     val robot = KtRobot()
 
-/*    var extArm: DcMotor? = null
-    var armServo: Servo? = null
-
-    var motF = DcMotorSimple.Direction.FORWARD
-    var motR = DcMotorSimple.Direction.REVERSE
-    var serR = Servo.Direction.REVERSE
-    var serF = Servo.Direction.FORWARD*/
-
     @Throws(InterruptedException::class)
     override fun runOpMode()
     {
@@ -36,11 +28,6 @@ class KtAutoOp : LinearOpMode()
         telemetry.update()
         //initializes all parts
         robot.init(hardwareMap)
-/*        extArm = hardwareMap.dcMotor.get("extArm")
-        armServo = hardwareMap.servo.get("armServo")
-
-        extArm?.direction = motF
-        armServo?.direction = serF*/
 
         waitForStart()
         //runtime.reset()//IDK WHY RUNTIME DOESN'T WORK!
@@ -52,18 +39,5 @@ class KtAutoOp : LinearOpMode()
         robot.dropArm()
         sleep(1000)
     }
-
-/*    fun unClamp()
-    {
-        extArm?.power = -0.5
-        armServo?.position = 0.0
-    }
-
-    fun drive(leftM: Double, rightM: Double)
-    {
-        robot.leftDrive.power = leftM
-        robot.rightDrive.power = rightM
-    }*/
-
 
 }
