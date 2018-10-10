@@ -36,7 +36,7 @@ class KtRobot
         leftDrive?.direction = motF
         rightDrive?.direction = motR
         extArm?.direction = motF
-        armServo?.direction = serF
+        armServo?.direction = serR
 
         leftDrive?.power = 0.0
         rightDrive?.power = 0.0
@@ -44,6 +44,7 @@ class KtRobot
         leftDrive?.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
         rightDrive?.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
         extArm?.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
+        armServo?.position = 0.5
     }
 
     //METHODS
@@ -56,6 +57,11 @@ class KtRobot
     fun extendArm(pow: Double)
     {
         extArm?.power = pow
+    }
+
+    fun dropArm()
+    {
+        armServo?.position = 1.0
     }
 
     fun drive(leftM: Double, rightM: Double)

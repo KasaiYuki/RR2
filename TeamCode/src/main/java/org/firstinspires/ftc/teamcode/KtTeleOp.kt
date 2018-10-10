@@ -54,6 +54,14 @@ class KtTeleOp : OpMode()
         robot.extArm?.power = extPower.toDouble()
         robot.spinServo(gamepad2)
 
+        try {
+            if (gamepad2.a)
+                robot.dropArm()
+        }
+        catch (e: Exception) {
+            telemetry.addData("Error!", println(e))
+        }
+
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)
         telemetry.addData("Arm Motor", " (%.2f)", -gamepad2.left_stick_y)
