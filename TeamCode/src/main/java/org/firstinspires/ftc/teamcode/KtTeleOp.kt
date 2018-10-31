@@ -47,7 +47,15 @@ class KtTeleOp : OpMode()
                 robot.dropArm()
         }
         catch (e: Exception) {
-            telemetry.addData("Error!", println(e))
+            telemetry.addData("Error in arm!", println(e))
+        }
+
+        try {
+            if(gamepad1.a)
+                robot.liftRobot()
+        }
+        catch (e: Exception) {
+            telemetry.addData("Error in Linear Slide!", println(e))
         }
 
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)

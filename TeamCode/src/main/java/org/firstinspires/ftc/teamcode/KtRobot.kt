@@ -12,6 +12,7 @@ class KtRobot
     var extArm: DcMotor? = null
     var armServo: Servo? = null
     var hwdMap: HardwareMap? = null
+    var lSlideArm: DcMotor? = null
 
     var motF = DcMotorSimple.Direction.FORWARD
     var motR = DcMotorSimple.Direction.REVERSE
@@ -31,6 +32,7 @@ class KtRobot
         rightDrive = ahwdMap.dcMotor.get("rightDrive")
         extArm = ahwdMap.dcMotor.get("extArm")
         armServo = ahwdMap.servo.get("armServo")
+        lSlideArm = ahwdMap.dcMotor.get("lSlideArm")
 
         //Setting direction
         leftDrive?.direction = motF
@@ -54,7 +56,10 @@ class KtRobot
         armServo?.position = 0.0
     }
 
-    fun extendArm(pow: Double)
+    /*
+    PLAN-use math to input angle, and calculate the power and output time needed
+     */
+    fun rotateArm(pow: Double)
     {
         extArm?.power = pow
     }
@@ -82,5 +87,9 @@ class KtRobot
             armServo?.position = 0.45 //Cube
         } else {
             armServo?.position = 0.0 }
+    }
+    fun liftRobot()
+    {
+        lSlideArm?.power = 10.0
     }
 }
