@@ -64,10 +64,15 @@ class KtRobot
         extArm?.power = pow
     }
 
-    fun dropArm()
+    fun dropToken()
     {
-        armServo?.position = 0.2
+        armServo?.position = 0.5
     }
+    fun liftToken()
+    {
+        armServo?.position = 0.8
+    }
+
 
     fun drive(leftM: Double, rightM: Double)
     {
@@ -91,5 +96,10 @@ class KtRobot
     fun liftRobot()
     {
         lSlideArm?.power = 10.0
+    }
+
+    fun liftRobot(pow: Double)
+    {
+        lSlideArm?.power = pow
     }
 }

@@ -1,12 +1,7 @@
 package org.firstinspires.ftc.teamcode
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
-import com.qualcomm.robotcore.hardware.DcMotor
-import com.qualcomm.robotcore.hardware.DcMotorSimple
-import com.qualcomm.robotcore.hardware.Servo
-import com.qualcomm.robotcore.util.ElapsedTime
 
 /**
  * Created by KasaiYuki on 9/20/2018.
@@ -25,6 +20,7 @@ class KtTeleOp : OpMode()
         telemetry.update()
         //initializes all parts
         robot.init(hardwareMap)
+        robot.armServo?.position = 0.8
 
     }
 
@@ -42,20 +38,37 @@ class KtTeleOp : OpMode()
         robot.extArm?.power = extPower.toDouble()
         robot.spinServo(gamepad2)
 
-        try {
+/*        try {
             if (gamepad2.a)
-                robot.dropArm()
+                robot.dropToken()
+            else
+                robot.liftToken()
+
         }
         catch (e: Exception) {
             telemetry.addData("Error in arm!", println(e))
+        }*/
+
+        try {
+            if(gamepad1.a) {
+                robot.liftRobot(10.0)
+            }
+            else
+                robot.liftRobot(0.0)
+        }
+        catch (e: Exception) {
+            telemetry.addData("Error in Linear Slide going up!", println(e))
         }
 
         try {
-            if(gamepad1.a)
-                robot.liftRobot()
+            if(gamepad1.b) {
+                robot.liftRobot(-10.0)
+            }
+            else
+                robot.liftRobot(0.0)
         }
         catch (e: Exception) {
-            telemetry.addData("Error in Linear Slide!", println(e))
+            telemetry.addData("Error in Linear Slide going down!", println(e))
         }
 
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)

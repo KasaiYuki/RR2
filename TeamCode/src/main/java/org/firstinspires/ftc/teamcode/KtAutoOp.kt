@@ -33,11 +33,13 @@ class KtAutoOp : LinearOpMode()
         //runtime.reset()//IDK WHY RUNTIME DOESN'T WORK!
 
         //robot.unClamp()
-        sleep(100)
-        //robot.drive(-1.0,1.0)
-        robot.drive(5.9)
-        robot.dropArm()
+        robot.liftRobot()
+        sleep(2000)
+        robot.drive(0.0)
         sleep(1000)
+        robot.drive(-10.0)
+        sleep(1000)
+
     }
 
 }
