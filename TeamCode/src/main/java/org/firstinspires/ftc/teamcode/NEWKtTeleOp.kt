@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
+import com.qualcomm.robotcore.hardware.DcMotor
 
 /**
  * Created by KasaiYuki on 11/14/2018.
@@ -12,13 +13,26 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 class NEWKtTeleOp : OpMode()
 {
     val robot = KtRobot()
+    var startPos: Int? = null
+    var sstartPos: Int = 0
+    var curPos: Int = 0
 
     override fun init() {
         telemetry.addData("Status", "Initialized")
         telemetry.update()
         //initializes all parts
         robot.init(hardwareMap)
+        robot.lSlideArm?.mode = DcMotor.RunMode.RUN_USING_ENCODER
         robot.armServo?.position = 0.8
+    }
+
+    /*
+        * Code to run ONCE when the driver hits PLAY
+    */
+    override fun start() {
+        robot.lSlideArm?.targetPosition = robot.lSlideArm?.currentPosition ?: 0
+        startPos = robot.lSlideArm?.targetPosition
+        sstartPos = startPos ?: 0
     }
 
     override fun loop()
@@ -28,6 +42,7 @@ class NEWKtTeleOp : OpMode()
         var rightPower: Float = -gamepad1.right_stick_y
         var armPower: Float = -gamepad2.left_stick_y
         var extPower: Float = -gamepad2.right_stick_y
+        //curPos = robot.lSlideArm?.currentPosition
 
         robot.leftDrive?.power = leftPower.toDouble()
         robot.rightDrive?.power = rightPower.toDouble()
@@ -45,27 +60,30 @@ class NEWKtTeleOp : OpMode()
         catch (e: Exception) {
             telemetry.addData("Error in arm!", println(e))
         }*/
-
         try {
-            if(gamepad1.a) {
-                robot.liftRobot(10.0)
-            }
-            else
-                robot.liftRobot(0.0)
-        }
-        catch (e: Exception) {
-            telemetry.addData("Error in Linear Slide going up!", println(e))
-        }
+            //curPos = (robot.lSlideArm?.currentPosition).toInt()
+            while (robot.lSlideArm!!.currentPosition > sstartPos) {
+                try {
+                    if (gamepad1.a) {
+                        robot.liftRobot(10.0)
+                    } else
+                        robot.liftRobot(0.0)
+                } catch (e: Exception) {
+                    telemetry.addData("Error in Linear Slide going up!", println(e))
+                }
 
-        try {
-            if(gamepad1.b) {
-                robot.liftRobot(-10.0)
+                try {
+                    if (gamepad1.b) {
+                        robot.liftRobot(-10.0)
+                    } else
+                        robot.liftRobot(0.0)
+                } catch (e: Exception) {
+                    telemetry.addData("Error in Linear Slide going down!", println(e))
+                }
             }
-            else
-                robot.liftRobot(0.0)
         }
-        catch (e: Exception) {
-            telemetry.addData("Error in Linear Slide going down!", println(e))
+        catch (n: NullPointerException) {
+            telemetry.addData("Arm is NULL", println(n))
         }
 
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)
