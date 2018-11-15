@@ -13,9 +13,6 @@ import com.qualcomm.robotcore.hardware.DcMotor
 class NEWKtTeleOp : OpMode()
 {
     val robot = KtRobot()
-    var startPos: Int? = null
-    var sstartPos: Int = 0
-    var curPos: Int = 0
 
     override fun init() {
         telemetry.addData("Status", "Initialized")
@@ -30,9 +27,12 @@ class NEWKtTeleOp : OpMode()
         * Code to run ONCE when the driver hits PLAY
     */
     override fun start() {
-        robot.lSlideArm?.targetPosition = robot.lSlideArm?.currentPosition ?: 0
-        startPos = robot.lSlideArm?.targetPosition
-        sstartPos = startPos ?: 0
+        try {
+            robot.lSlideArm!!.targetPosition = robot.lSlideArm!!.currentPosition
+        }
+        catch (n: NullPointerException) {
+            telemetry.addData("LSlide pos is NULL!", println(n))
+        }
     }
 
     override fun loop()
@@ -62,7 +62,7 @@ class NEWKtTeleOp : OpMode()
         }*/
         try {
             //curPos = (robot.lSlideArm?.currentPosition).toInt()
-            while (robot.lSlideArm!!.currentPosition > sstartPos) {
+            while (robot.lSlideArm!!.currentPosition > robot.lSlideArm!!.targetPosition) {
                 try {
                     if (gamepad1.a) {
                         robot.liftRobot(10.0)
