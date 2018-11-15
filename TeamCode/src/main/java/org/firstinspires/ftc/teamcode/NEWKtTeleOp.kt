@@ -27,6 +27,7 @@ class NEWKtTeleOp : OpMode()
         * Code to run ONCE when the driver hits PLAY
     */
     override fun start() {
+        robot.lSlideArm?.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
         try {
             robot.lSlideArm!!.targetPosition = robot.lSlideArm!!.currentPosition
         }
