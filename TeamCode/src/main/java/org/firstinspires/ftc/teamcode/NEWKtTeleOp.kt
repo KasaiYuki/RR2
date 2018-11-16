@@ -20,7 +20,7 @@ class NEWKtTeleOp : OpMode()
         //initializes all parts
         robot.init(hardwareMap)
         robot.lSlideArm?.mode = DcMotor.RunMode.RUN_USING_ENCODER
-        robot.armServo?.position = 0.8
+        robot.tokenServo?.position = 0.8
     }
 
     /*
@@ -41,14 +41,12 @@ class NEWKtTeleOp : OpMode()
         //Tank Drive
         var leftPower: Float = -gamepad1.left_stick_y
         var rightPower: Float = -gamepad1.right_stick_y
-        var armPower: Float = -gamepad2.left_stick_y
-        var extPower: Float = -gamepad2.right_stick_y
-        //curPos = robot.lSlideArm?.currentPosition
+        var slidePower: Float = -gamepad2.left_stick_y
 
-        robot.leftDrive?.power = leftPower.toDouble()
-        robot.rightDrive?.power = rightPower.toDouble()
-        robot.extArm?.power = armPower.toDouble()
-        robot.extArm?.power = extPower.toDouble()
+        robot.leftDrive?.power = leftPower as Double
+        robot.rightDrive?.power = rightPower as Double
+        robot.lSlideArm?.power = slidePower as Double //Option 2: use joystick for slide
+        //robot.armMot?.power = extPower.toDouble()
         robot.spinServo(gamepad2)
 
 /*        try {
@@ -90,7 +88,7 @@ class NEWKtTeleOp : OpMode()
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower)
         telemetry.addData("Arm Motor", " (%.2f)", -gamepad2.left_stick_y)
-        telemetry.addData("Servo", robot.armServo?.position)
+        telemetry.addData("Servo", robot.tokenServo?.position)
     }
 
     override fun stop()
@@ -101,10 +99,10 @@ class NEWKtTeleOp : OpMode()
 /*  //Will close the arm to different positions based on what is being grabbed
     private fun spinServo() {
         if (gamepad2.left_bumper) {
-            armServo?.position = 0.25 //Sphere
+            tokenServo?.position = 0.25 //Sphere
         } else if (gamepad2.right_bumper) {
-            armServo?.position = 0.45 //Cube
+            tokenServo?.position = 0.45 //Cube
         } else {
-            armServo?.position = 0.0 }
+            tokenServo?.position = 0.0 }
     }*/
 }

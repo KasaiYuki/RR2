@@ -1,18 +1,17 @@
 package org.firstinspires.ftc.teamcode
 import com.qualcomm.robotcore.hardware.*
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 
 /**
  * Created by KasaiYuki on 9/25/2018.
  */
 class KtRobot
 {
+    var hwdMap: HardwareMap? = null
     var leftDrive: DcMotor? = null
     var rightDrive: DcMotor? = null
-    var extArm: DcMotor? = null
-    var armServo: Servo? = null
-    var hwdMap: HardwareMap? = null
-    var lSlideArm: DcMotor? = null
+    var armMot: DcMotor? = null
+    var tokenServo: Servo? = null //servo to drop team token
+    var lSlideArm: DcMotor? = null //motor to lift the linear slide
 
     var motF = DcMotorSimple.Direction.FORWARD
     var motR = DcMotorSimple.Direction.REVERSE
@@ -30,30 +29,30 @@ class KtRobot
         hwdMap = ahwdMap
         leftDrive = ahwdMap.dcMotor.get("leftDrive")
         rightDrive = ahwdMap.dcMotor.get("rightDrive")
-        extArm = ahwdMap.dcMotor.get("extArm")
-        armServo = ahwdMap.servo.get("armServo")
+        armMot = ahwdMap.dcMotor.get("armMot")
+        tokenServo = ahwdMap.servo.get("tokenServo")
         lSlideArm = ahwdMap.dcMotor.get("lSlideArm")
 
         //Setting direction
         leftDrive?.direction = motF
         rightDrive?.direction = motR
-        extArm?.direction = motF
-        armServo?.direction = serR
+        armMot?.direction = motF
+        tokenServo?.direction = serR
 
         leftDrive?.power = 0.0
         rightDrive?.power = 0.0
-        extArm?.power = 0.0
+        armMot?.power = 0.0
         leftDrive?.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
         rightDrive?.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
-        extArm?.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
-        armServo?.position = 0.8
+        armMot?.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
+        tokenServo?.position = 0.8
     }
 
     //METHODS
     fun unClamp()
     {
-        extArm?.power = -0.5
-        armServo?.position = 0.0
+        armMot?.power = -0.5
+        tokenServo?.position = 0.0
     }
 
     /*
@@ -61,16 +60,16 @@ class KtRobot
      */
     fun rotateArm(pow: Double)
     {
-        extArm?.power = pow
+        armMot?.power = pow
     }
 
     fun dropToken()
     {
-        armServo?.position = 0.5
+        tokenServo?.position = 0.5
     }
     fun liftToken()
     {
-        armServo?.position = 0.8
+        tokenServo?.position = 0.8
     }
 
 
@@ -87,11 +86,11 @@ class KtRobot
 
     fun spinServo(gp: Gamepad) {
         if (gp.left_bumper) {
-            armServo?.position = 0.25 //Sphere
+            tokenServo?.position = 0.25 //Sphere
         } else if (gp.right_bumper) {
-            armServo?.position = 0.45 //Cube
+            tokenServo?.position = 0.45 //Cube
         } else {
-            armServo?.position = 0.0 }
+            tokenServo?.position = 0.0 }
     }
     fun liftRobot()
     {
