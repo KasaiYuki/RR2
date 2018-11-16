@@ -31,29 +31,29 @@ class KtTeleOp : OpMode()
         var rightPower: Float = -gamepad1.right_stick_y
         var slidePower: Float = -gamepad2.left_stick_y
 
-        robot.leftDrive?.power = leftPower as Double
-        robot.rightDrive?.power = rightPower as Double
-        robot.lSlideArm?.power = slidePower as Double //Option 2: use joystick for slide
+        robot.leftDrive?.power = leftPower.toDouble()
+        robot.rightDrive?.power = rightPower.toDouble()
+        robot.lSlideArm?.power = slidePower.toDouble() //Option 2: use joystick for slide
         //robot.armMot?.power = extPower.toDouble()
         robot.spinServo(gamepad2)
 
-/*        try {
+        try {
             if (gamepad2.a)
                 robot.dropToken()
-            else
+            else (gamepad2.b)
                 robot.liftToken()
 
         }
         catch (e: Exception) {
             telemetry.addData("Error in arm!", println(e))
-        }*/
+        }
 
         try {
             if(gamepad1.a) {
                 robot.liftRobot(10.0)
             }
-            else
-                robot.liftRobot(0.0)
+/*            else
+                robot.liftRobot(0.0)*/
         }
         catch (e: Exception) {
             telemetry.addData("Error in Linear Slide going up!", println(e))

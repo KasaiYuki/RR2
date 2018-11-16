@@ -65,11 +65,11 @@ class KtRobot
 
     fun dropToken()
     {
-        tokenServo?.position = 0.5
+        tokenServo?.position = 0.4
     }
     fun liftToken()
     {
-        tokenServo?.position = 0.8
+        tokenServo?.position = 0.0
     }
 
 

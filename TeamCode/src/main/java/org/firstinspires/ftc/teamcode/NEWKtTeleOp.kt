@@ -30,6 +30,7 @@ class NEWKtTeleOp : OpMode()
         robot.lSlideArm?.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
         try {
             robot.lSlideArm!!.targetPosition = robot.lSlideArm!!.currentPosition
+            telemetry.addData("Arm:", "target-(%.2f), curr-(%.2f)", robot.lSlideArm!!.targetPosition, robot.lSlideArm!!.currentPosition)
         }
         catch (n: NullPointerException) {
             telemetry.addData("LSlide pos is NULL!", println(n))
@@ -43,9 +44,9 @@ class NEWKtTeleOp : OpMode()
         var rightPower: Float = -gamepad1.right_stick_y
         var slidePower: Float = -gamepad2.left_stick_y
 
-        robot.leftDrive?.power = leftPower as Double
-        robot.rightDrive?.power = rightPower as Double
-        robot.lSlideArm?.power = slidePower as Double //Option 2: use joystick for slide
+        robot.leftDrive?.power = leftPower.toDouble()
+        robot.rightDrive?.power = rightPower.toDouble()
+        robot.lSlideArm?.power = slidePower.toDouble() //Option 2: use joystick for slide
         //robot.armMot?.power = extPower.toDouble()
         robot.spinServo(gamepad2)
 
