@@ -20,7 +20,7 @@ class KtTeleOp : OpMode()
         telemetry.update()
         //initializes all parts
         robot.init(hardwareMap)
-        robot.tokenServo?.position = 0.8
+        robot.tokenServo?.position = 0.9
 
     }
 
@@ -31,13 +31,13 @@ class KtTeleOp : OpMode()
         var rightPower: Float = -gamepad1.right_stick_y
         var slidePower: Float = -gamepad2.left_stick_y
 
-        robot.leftDrive?.power = leftPower.toDouble()
-        robot.rightDrive?.power = rightPower.toDouble()
+        robot.leftDrive?.power = leftPower.toDouble() / 1.25
+        robot.rightDrive?.power = rightPower.toDouble() / 1.25
         robot.lSlideArm?.power = slidePower.toDouble() //Option 2: use joystick for slide
         //robot.armMot?.power = extPower.toDouble()
         robot.spinServo(gamepad2)
 
-        try {
+  /*      try {
             if (gamepad2.a)
                 robot.dropToken()
             else (gamepad2.b)
@@ -46,7 +46,9 @@ class KtTeleOp : OpMode()
         }
         catch (e: Exception) {
             telemetry.addData("Error in arm!", println(e))
-        }
+        }*/
+
+
 
         try {
             if(gamepad1.a) {
