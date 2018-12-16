@@ -7,13 +7,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp
  * Created by KasaiYuki on 9/20/2018.
  */
 
-@TeleOp(name="KtTeleOp", group="TeleOp")
+@TeleOp(name="KtTele2", group="TeleOp")
 //@Disabled
-class KtTeleOp : OpMode()
+class KtTele2 : OpMode()
 {
     //using robot class for motors, servos etc
     val robot = KtRobot()
-
+    var slowDown = 1.25//default
     override fun init()
     {
         telemetry.addData("Status", "Initialized")
@@ -26,27 +26,28 @@ class KtTeleOp : OpMode()
 
     override fun loop()
     {
+        slowDown = if(gamepad1.left_bumper) 2.0 else 1.25 //condensed if else
         //Tank Drive
         var leftPower: Float = -gamepad1.left_stick_y
         var rightPower: Float = -gamepad1.right_stick_y
         var slidePower: Float = -gamepad2.left_stick_y
 
-        robot.leftDrive?.power = leftPower.toDouble() / 1.25
-        robot.rightDrive?.power = rightPower.toDouble() / 1.25
+        robot.leftDrive?.power = leftPower.toDouble() / slowDown
+        robot.rightDrive?.power = rightPower.toDouble() / slowDown
         robot.lSlideArm?.power = slidePower.toDouble() //Option 2: use joystick for slide
         //robot.armMot?.power = extPower.toDouble()
         robot.spinServo(gamepad2)
 
-  /*      try {
-            if (gamepad2.a)
-                robot.dropToken()
-            else (gamepad2.b)
-                robot.liftToken()
+        /*      try {
+                  if (gamepad2.a)
+                      robot.dropToken()
+                  else (gamepad2.b)
+                      robot.liftToken()
 
-        }
-        catch (e: Exception) {
-            telemetry.addData("Error in arm!", println(e))
-        }*/
+              }
+              catch (e: Exception) {
+                  telemetry.addData("Error in arm!", println(e))
+              }*/
 
 
 
