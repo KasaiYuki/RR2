@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp
  * Created by KasaiYuki on 9/20/2018.
  */
 
-@TeleOp(name="KtTele2", group="TeleOp")
+@TeleOp(name="KtTeleOp", group="TeleOp")
 //@Disabled
-class KtTele2 : OpMode()
+class KtTeleOp : OpMode()
 {
     //using robot class for motors, servos etc
     val robot = KtRobot()
